@@ -36,6 +36,32 @@ model = VXNet(
 | `elu`             | bool         | True                | Use ELU activation if `True`, PReLU if `False`                                        |
 | `nll`             | bool         | False               | Use log softmax output if `True`, softmax if `False`                                  |
 
+**Example**
+```python
+from VXNet.vx_net import VXNet
+import torch
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+x = torch.randn(1, 2, 50, 512, 512)
+
+model = VXNet(in_chans=2,elu=False, nll=True).to(device)
+y=model(x)
+
+print(y.shape)
+
+```
+## Installation / Required Packages
+To run the VX-Net implementation, you need the following Python packages:
+```bash
+# PyTorch
+pip install torch torchvision torchaudio
+
+# TIMM 
+pip install timm
+
+```
+
 ## Results
 The proposed system and network were evaluated on patients with varying COVID-19 severity and compared with different state-of-the-art segmentation methods, as summarized in the following table:
 
